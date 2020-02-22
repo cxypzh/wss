@@ -611,7 +611,7 @@ nginx_process_disabled(){
 #    judge "rc.local 配置"
 #}
 acme_cron_update(){
-    wget -N -P /usr/bin --no-check-certificate "https://raw.githubusercontent.com/cxypzh/wss/dev/ssl_update.sh"
+    wget -N -P /usr/bin --no-check-certificate "https://raw.githubusercontent.com/cxypzh/wss/ssl_update.sh"
     if [[ "${ID}" == "centos" ]];then
 #        sed -i "/acme.sh/c 0 3 * * 0 \"/root/.acme.sh\"/acme.sh --cron --home \"/root/.acme.sh\" \
 #        &> /dev/null" /var/spool/cron/root
