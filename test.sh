@@ -646,26 +646,7 @@ ssl_judge_and_install(){
 }
 
 nginx_systemd(){
-    cat>$nginx_systemd_file<<EOF
-[Unit]
-Description=The NGINX HTTP and reverse proxy server
-After=syslog.target network.target remote-fs.target nss-lookup.target
 
-[Service]
-Type=forking
-PIDFile=/etc/nginx/logs/nginx.pid
-ExecStartPre=/usr/sbin/nginx -t
-ExecStart=/usr/sbin/nginx -c ${nginx_dir}/nginx.conf
-ExecReload=/usr/sbin/nginx -s reload
-ExecStop=/bin/kill -s QUIT \$MAINPID
-PrivateTmp=true
-
-[Install]
-WantedBy=multi-user.target
-EOF
-
-judge "Nginx systemd ServerFile 添加"
-systemctl daemon-reload
 }
 
 tls_type(){
@@ -765,7 +746,7 @@ install_v2ray_ws_tls(){
     nginx_conf_add
     web_camouflage
     ssl_judge_and_install
-    nginx_systemd
+    #nginx_systemd
     vmess_qr_config_tls_ws
     basic_information
     vmess_qr_link_image
